@@ -141,6 +141,39 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSwiperSlides(defaultCategory, defaultFilter);
 });
 
+
+// gallay swiper
+
+// Swiper JS Initialization
+document.addEventListener('DOMContentLoaded', () => {
+    const swiper = new Swiper('.gallery__swiper', {
+      loop: true,
+      autoplay: {
+        delay: 3000, // Auto move every 3 seconds
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true, // Allow clicking on pagination
+      },
+      slidesPerView: 'auto', // Adjust number of images per view depending on screen size
+      spaceBetween: 20, // Space between slides
+      breakpoints: {
+        320: {
+          slidesPerView: 1, // On mobile, show 1 image at a time
+          spaceBetween: 10,
+        },
+        768: {
+          slidesPerView: 2, // On tablets, show 2 images at a time
+          spaceBetween: 15,
+        },
+        1024: {
+          slidesPerView: 3, // On larger screens, show 3 images at a time
+          spaceBetween: 20,
+        },
+      },
+    });
+  });
+  
   
 
 
