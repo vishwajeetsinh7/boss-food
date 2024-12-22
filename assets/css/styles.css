@@ -1247,7 +1247,7 @@ img.asli-chatori-img {
 /* about us style */
 .about__container.container { 
   margin-top: 3rem;
-  background-color: #e63946;
+  background-color: #001219;
   padding: 3rem;
   border-radius: 40px;
 }
@@ -1400,25 +1400,6 @@ img.asli-chatori-img {
 
 
 /* gallary  */
-
-
-/* Gallery Section */
-/* General Reset and Body Styling */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-* {
-  margin: 0;
-}
-
-body {
-  background-color: #030712;
-  font-family: Arial, sans-serif;
-  color: #fff;
-}
 
 /* Gallery Section */
 .gallery {
