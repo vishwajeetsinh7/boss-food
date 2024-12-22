@@ -37,12 +37,112 @@ const shadowHeader = () => {
 window.addEventListener('scroll', shadowHeader)
 
 /*=============== SWIPER FAVORITES ===============*/
-const swiperFavorites = new Swiper('.favorites__swiper', {
-    loop: true,
-    grabCursor: true,
-    slidesPerview: 'auto',
-    centeredSlides: 'auto'
-})
+// const swiperFavorites = new Swiper('.favorites__swiper', {
+//     loop: true,
+//     grabCursor: true,
+//     slidesPerview: 'auto',
+//     centeredSlides: 'auto', 
+//     autoplay: {
+//         delay: 2500,
+//       },
+// })
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.tab');
+    const filters = document.querySelectorAll('.filter');
+    const swiperWrapper = document.querySelector('.swiper-wrapper');
+    const allSlides = Array.from(document.querySelectorAll('.swiper-slide'));
+  
+    // Initialize Swiper with your existing settings
+    const swiperFavorites = new Swiper('.favorites__swiper', {
+      loop: true,
+      grabCursor: true,
+      slidesPerView: 'auto',
+      centeredSlides: true,
+      autoplay: {
+        delay: 2500,
+      },
+    });
+  
+    // Function to update slides based on the selected category and price filter
+    function updateSwiperSlides(category, priceFilter) {
+      // Stop autoplay temporarily
+      swiperFavorites.autoplay.stop();
+  
+      // Filter slides by category and price
+      const filteredSlides = allSlides.filter(slide => {
+        const isCategoryMatch = slide.getAttribute('data-category') === category;
+        const isPriceMatch = priceFilter ? slide.getAttribute('data-price') === priceFilter : true; // Filter by price if priceFilter is provided
+        return isCategoryMatch && isPriceMatch;
+      });
+  
+      // Clear the swiper wrapper
+      swiperWrapper.innerHTML = '';
+  
+      // If no slides are found, show all slides of the selected category (fallback mechanism)
+      if (filteredSlides.length === 0) {
+        const fallbackSlides = allSlides.filter(slide => slide.getAttribute('data-category') === category);
+        filteredSlides.push(...fallbackSlides);
+      }
+  
+      // Append only filtered slides
+      filteredSlides.forEach(slide => {
+        swiperWrapper.appendChild(slide.cloneNode(true));
+      });
+  
+      // Update Swiper to reflect the changes
+      swiperFavorites.update();
+  
+      // Restart autoplay
+      swiperFavorites.autoplay.start();
+    }
+  
+    // Tabs click event listener
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+  
+        // Get the category from the clicked tab
+        const targetCategory = tab.getAttribute('data-target');
+  
+        // Get the current active price filter
+        const activeFilter = document.querySelector('.filter.active')?.getAttribute('data-price');
+  
+        // Update Swiper slides based on category and filter
+        updateSwiperSlides(targetCategory, activeFilter);
+      });
+    });
+  
+    // Filter click event listener
+    filters.forEach(filter => {
+      filter.addEventListener('click', () => {
+        // Remove active class from all filters
+        filters.forEach(f => f.classList.remove('active'));
+        filter.classList.add('active');
+  
+        // Get the current active tab
+        const activeTab = document.querySelector('.tab.active').getAttribute('data-target');
+  
+        // Get the selected price filter
+        const selectedPrice = filter.getAttribute('data-price');
+  
+        // Update Swiper slides based on selected filter and active tab
+        updateSwiperSlides(activeTab, selectedPrice);
+      });
+    });
+  
+    // Initialize Swiper with the default tab on page load
+    const defaultCategory = document.querySelector('.tab.active').getAttribute('data-target');
+    const defaultFilter = document.querySelector('.filter.active')?.getAttribute('data-price');
+    updateSwiperSlides(defaultCategory, defaultFilter);
+});
+
+  
+
 
 /*=============== SHOW SCROLL UP ===============*/
 const scrollUp = () => {
@@ -82,7 +182,7 @@ const sr = ScrollReveal({
     distance: '60px',
     duration: 2500,
     delay: 300,
-    //reset: true //animations repeat
+    reset: true //animations repeat
 })
 sr.reveal('.home_data, .favorite__container .footer__container')
 sr.reveal('.home__circle, .home__img', { delay: 600, scale: .5 })
@@ -92,5 +192,9 @@ sr.reveal('.home__tomato-1, .home__tomato-2', { delay: 1400, interval: 100 })
 sr.reveal('.care__img, .contact__img', { origin: 'left' })
 sr.reveal('.care__list, .contact__data', { origin: 'right' })
 sr.reveal('.banner__item, .products__card', { interval: 100 })
+
+
+
+
 
 

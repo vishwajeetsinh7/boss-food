@@ -46,6 +46,51 @@
   --highlight-red: #e63946;
 }
 
+/* third theme */
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  /* --first-color: hsl(170, 90%, 34%); */
+  --first-color: #2C2C2C;
+  /* --first-color-dark: hsl(170, 100%, 28%); */
+  --first-color-dark: #1b4332;
+  --first-color-darken: hsl(170, 100%, 23%);
+  --second-color: hsl(45, 100%, 52%);
+  --second-color-dark: hsl(45, 100%, 20%);
+  --white-color: #E3D5B1;
+  --shadow-img: drop-shadow(0 12px 24px hsla(0, 0%, 0%, .4));
+  --shadow-circle: 0 12px 24px hsla(0, 0%, 0%, .4);
+  --shadow-button: 0 -4px 8px hsla(0, 0%, 0%, .3);
+  --shadow-card: 0 -8px 24px hsla(0, 0%, 0%, .3);
+  --shadow-text: 0 2px 4px var(--first-color-darken);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Poppins", sans-serif;
+  --second-font: "Titan One", sans-serif;
+  --biggest-font-size: 3.5rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+
+  /* updates */
+  --highlight-red: #FF3B30; 
+  --secondary-color: #F1F1A1
+}
+
+
 /*========== Responsive typography ==========*/
 @media screen and (min-width: 1150px) {
   :root {
@@ -68,7 +113,7 @@
 html {
   scroll-behavior: smooth;
 }
-
+  
 body {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
@@ -902,6 +947,7 @@ li:has(.active-link) {
 
   .home__title {
     margin-bottom: 1.5rem;
+    font-size: 70px;
   }
 
   .home__description {
@@ -929,7 +975,8 @@ li:has(.active-link) {
   }
 
   .home__images .home__img {
-    width: 400px;
+    width: 100%;
+    scale: 1.2;
   }
 
   .home__images img {
@@ -1181,6 +1228,14 @@ body img  {
   font-size: 25px;
 }
 
+img.asli-chatori-img { 
+  position: absolute;
+  top: -63px;
+  width: 242px;
+  left: -77px;
+  animation: none !important;
+}
+
 .swiper-slide-active .section__title.product { 
   display: inherit;
 }
@@ -1258,6 +1313,87 @@ body img  {
   margin-left: 17rem;
   margin-top: 3rem ;
 }
+
+
+/* tabs */
+/* Tab Wrapper */
+.tabs-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 70px;
+}
+
+/* Tabs Container */
+.tabs {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+/* Individual Tab Styles */
+.tabs button {
+  background-color: var(--white-color);
+  border: 2px solid var(--first-color-dark); /* Adding border to make the tabs stand out */
+  padding: 0.5rem 1.4rem;
+  border-radius: 8px;
+  color: var(--first-color-dark);
+  font-weight: var(--font-semi-bold);
+  font-size: 17px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Active Tab Style */
+.tab.active {
+  background-color: var(--highlight-red);
+  color: var(--white-color);
+  border-color: var(--highlight-red);
+  box-shadow: 0 4px 12px var(--shadow-button); /* Shadow to give active tab a pop effect */
+}
+
+/* Hover effect for tabs */
+.tabs button:hover {
+  background-color: var(--first-color-darken);
+  color: var(--white-color);
+}
+
+/* Filter Section (Pricing Filters) */
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  transition: display 0.3s ease;
+}
+
+/* Filter Button Styles */
+.filter {
+  background-color: var(--white-color);
+  border: 2px solid var(--first-color-dark);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--first-color-dark);
+  font-weight: var(--font-regular);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Active Filter Style */
+.filter.active {
+  background-color: var(--highlight-red);
+  color: var(--white-color);
+  border-color: var(--highlight-red);
+}
+
+/* Hide filters when "Upcoming" tab is active */
+.tabs-wrapper:has(.tab.active[data-target="upcoming"]) .filters {
+  display: none;
+}
 @media (max-width: 749px) { 
   .hero-no img { 
     width: 40px;
@@ -1283,6 +1419,16 @@ body img  {
   .contact__container  .contact__img  { 
     margin-top: 5rem;
     margin-left: 0;
+  }
+
+  img.asli-chatori-img  { 
+    top: -38px;
+    width: 118px;
+    left: -43px;
+  }
+
+  .home__images .home__img { 
+    width: 300px;
   }
 
 }
