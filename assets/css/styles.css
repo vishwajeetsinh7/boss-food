@@ -1582,6 +1582,19 @@ img.asli-chatori-img {
   .home__images .home__img { 
     width: 300px;
   }
+  .header { 
+    padding-block: 10px;
+  }
+  li:has(.nav__link) { 
+    padding-block: 13px;
+  }
+  .nav__list { 
+    row-gap: 1rem;
+  }
+
+  nav__logo img { 
+    max-width: 60px;
+  }
 
 }
 
