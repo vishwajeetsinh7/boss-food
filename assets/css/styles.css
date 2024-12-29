@@ -1208,6 +1208,8 @@ body img  {
 }
 .home__images .home__tomato-1 { 
   animation-delay: 1s;
+  rotate: 30deg;
+  width: 40px;
 }
 .home__images .home__chips-1{ 
   animation-delay: 1.5s;
@@ -1522,6 +1524,24 @@ img.asli-chatori-img {
 .item6 { animation-delay: calc(30s / 8 * (8 - 6) * -1); }
 .item7 { animation-delay: calc(30s / 8 * (8 - 7) * -1); }
 .item8 { animation-delay: calc(30s / 8 * (8 - 8) * -1); }
+
+
+
+article .icon-img{ 
+  width: 80px;
+  height: 80px;
+}
+
+article .icon-img:first-child { 
+  top: -4rem;
+}
+
+article .icon-img-two { 
+  bottom:5rem !important;
+}
+
+
+
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
